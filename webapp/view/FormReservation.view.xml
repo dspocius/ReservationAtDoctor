@@ -1,0 +1,38 @@
+<mvc:View 
+xmlns:mvc="sap.ui.core.mvc" 
+displayBlock="true" 
+xmlns="sap.m" 
+xmlns:co="sap.ui.commons"
+xmlns:f="sap.ui.layout.form" 
+xmlns:core="sap.ui.core" 
+controllerName="sap.ui.demo.wt.controller.FormReservation">
+<App>  
+<pages>  
+<Page id="FormReservation" enableScrolling="true" showFooter="true" title="{i18n>newReservation}">
+	<headerContent>
+	<Button
+		icon="sap-icon://hello-world"
+		text="{i18n>reservations}"
+		press="showCalendar"/>
+	</headerContent>
+    <content>
+            <f:SimpleForm >
+				<Label text="{i18n>yourInfo}"/> 
+                <Input id="firstname" type="Text" maxLength="100" placeholder="{i18n>firstname}" value="{path: '/firstname', type: 'sap.ui.model.type.String', constraints : {minLength : 3, maxLength : 80}}"/>
+                <Input id="lastname" type="Text" maxLength="100" placeholder="{i18n>lastname}" value="{path: '/lastname', type: 'sap.ui.model.type.String', constraints : {minLength : 3, maxLength : 80}}"/>
+				<Label text="{i18n>appointmentTime}"/> 
+				<DatePicker id="reservationDate" displayFormat="yyyy-MM-dd" change="dateInputValidation" valueFormat="yyyy-MM-dd" value="{path: '/reservationDate', type:'sap.ui.model.type.Date', formatOptions: {source:{pattern: 'yyyy-MM-dd'}, pattern: 'yyyy-MM-dd'}}" />
+				<TimePicker id="reservationTime" minutesStep="20"  valueFormat="HH:mm:ss" change="timeInputValidation" displayFormat="HH:mm:ss" value="{path: '/reservationTime', type:'sap.ui.model.type.Time', formatOptions: {source:{pattern: 'HH:mm'}, pattern: 'HH:mm'}}" />
+            </f:SimpleForm>
+    </content>
+    <footer>
+        <Bar>
+            <contentMiddle>
+                <Button id="btnCreate" text="{i18n>create}" press="create" icon="sap-icon://add-activity-2"/>
+            </contentMiddle>
+        </Bar>
+    </footer>
+</Page>
+</pages>
+</App>
+</mvc:View>

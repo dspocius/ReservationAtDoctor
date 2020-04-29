@@ -1,0 +1,69 @@
+<mvc:View
+	controllerName="sap.ui.demo.wt.controller.Calendar"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:unified="sap.ui.unified"
+	xmlns="sap.m">
+	<VBox class="sapUiSmallMargin">
+		<PlanningCalendar
+			id="PC1"
+			startDate="{path: '/startDate'}"
+			rows="{path: '/people'}"
+			appointmentsVisualization="Filled"
+			appointmentSelect="handleAppointmentSelect"
+			showEmptyIntervalHeaders="false"
+			showWeekNumbers="true">
+			<toolbarContent>
+				<Title text="{i18n>appointmentsAtDoctor}" titleStyle="H4"/>
+				<Button
+					icon="sap-icon://hello-world"
+					text="{i18n>newReservation}"
+					press="showReservation"/>
+			</toolbarContent>
+			<rows>
+				<PlanningCalendarRow
+					icon="{pic}"
+					title="{name}"
+					text="{role}"
+					appointments="{path : 'appointments', templateShareable: true}"
+					intervalHeaders="{path: 'headers', templateShareable: true}">
+					<customData>
+						<core:CustomData key="emp-name" value="{name}" writeToDom="true"/>
+					</customData>
+					<appointments>
+						<unified:CalendarAppointment
+							startDate="{start}"
+							endDate="{end}"
+							icon="{pic}"
+							title="{title}"
+							text="{info}"
+							type="{type}"
+							tentative="{tentative}">
+						</unified:CalendarAppointment>
+					</appointments>
+					<intervalHeaders>
+						<unified:CalendarAppointment
+							startDate="{start}"
+							endDate="{end}"
+							icon="{pic}"
+							title="{title}"
+							type="{type}">
+						</unified:CalendarAppointment>
+					</intervalHeaders>
+				</PlanningCalendarRow>
+			</rows>
+		</PlanningCalendar>
+		<MultiComboBox
+				selectionFinish="handleSelectionFinish"
+				width="230px"
+				placeholder="{i18n>chooseBuiltViews}">
+			<items>
+				<core:Item key="Hour" text="{i18n>hour}" />
+				<core:Item key="Day" text="{i18n>day}" />
+				<core:Item key="Month" text="{i18n>month}" />
+				<core:Item key="Week" text="{i18n>week}" />
+				<core:Item key="One Month" text="{i18n>oneMonth}" />
+			</items>
+		</MultiComboBox>
+	</VBox>
+</mvc:View>
